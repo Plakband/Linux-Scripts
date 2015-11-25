@@ -1,0 +1,10 @@
+#!/bin/bash
+#incremental backup of documents using rsync
+
+DAY=$(date +%A)
+
+if [ -e /run/media/nic/Data/Backup/Arch/incr/$DAY ] ; then
+  rm -fr /run/media/nic/Data/Backup/Arch//incr/$DAY
+fi
+
+rsync -a --delete --inplace --backup --backup-dir=/run/media/nic/Data/Backup/Arch//incr/$DAY ~/Documents /home/nic/Documents &> /dev/null
